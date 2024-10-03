@@ -1,0 +1,119 @@
+HTML
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Página Principal</title>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Boas vindas</h1>
+        <h3>Digite um número:</h3>
+        <input type="number" id="numero" placeholder="Número" required>
+        <button onclick="gerarLista()">Enviar</button>
+        <div id="mensagem" class="mensagem"></div>
+        <div id="lista" class="lista"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</h
+--------------------------------------------------------------
+
+CSS
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e9ecef;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-container {
+    max-width: 400px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+h1 {
+    font-size: 28px;
+    color: #333;
+}
+
+h3 {
+    font-size: 18px;
+    color: #555;
+}
+
+input {
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 24px);
+    box-sizing: border-box;
+}
+
+button {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.mensagem {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+.lista {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+}
+-------------------------------------------------------
+
+JAVASCRIPT
+function gerarLista() {
+    const numero = parseInt(document.getElementById('numero').value);
+    const mensagem = document.getElementById('mensagem');
+    const listaDiv = document.getElementById('lista');
+
+    mensagem.textContent = ''; // Limpa mensagens anteriores
+    listaDiv.innerHTML = ''; // Limpa a lista anterior
+
+    if (isNaN(numero) || numero <= 0) {
+        mensagem.textContent = 'Por favor, insira um número válido.';
+        mensagem.style.color = 'red';
+    } else {
+        const nome = 'Seu Nome'; // Substitua pelo seu nome
+        mensagem.textContent = `Lista de ${numero} itens para ${nome}:`;
+        mensagem.style.color = 'green';
+
+        const ul = document.createElement('ul');
+        for (let i = 1; i <= numero; i++) {
+            const li = document.createElement('li');
+            li.textContent = `${i}. Item ${i}`;
+            ul.appendChild(li);
+        }
+        listaDiv.appendChild(ul);
+    }
+}
